@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS short_links (
+    id TEXT PRIMARY KEY,
+    target_url TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
