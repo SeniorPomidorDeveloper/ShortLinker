@@ -21,6 +21,7 @@ override_dh_auto_configure:
 	    -DCMAKE_BUILD_TYPE=Release \
 	    -DCMAKE_INSTALL_PREFIX=/usr \
 	    -DUSERVER_FEATURE_POSTGRESQL=ON \
+	    -DUSERVER_FEATURE_PATCH_LIBPQ=OFF \
 	    -DCMAKE_CXX_FLAGS="-Wno-deprecated-declarations -Wno-array-bounds -Wno-stringop-overflow -Wno-dangling-reference" \
 	    -G Ninja
 
