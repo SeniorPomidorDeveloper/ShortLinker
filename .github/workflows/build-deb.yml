@@ -62,3 +62,19 @@ jobs:
                 name: deb-package-ubuntu-24.04
                 path: '*.deb'
                 if-no-files-found: error
+
+          - name: Extract version from debian/changelog
+            if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+            run: |
+                VERSION=$(head -1 debian/changelog | grep -oP '(?<=\()\d+\.\d+\.\d+(?=-)')
+                echo "VERSION=v${VERSION}" >> $GITHUB_ENV
+
+          - name: Create GitHub Release
+            if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+            uses: softprops/action-gh-release@v1
+            with:
+                files: '*.deb'
+                tag_name: ${{env.VERSION}}
+                generate_release_notes: true
+            env:
+                GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
