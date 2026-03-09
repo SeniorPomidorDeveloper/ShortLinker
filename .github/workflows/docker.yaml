@@ -6,8 +6,8 @@ name: Docker build
     pull_request:
     push:
         branches:
-          - master
-          - develop
+          - main
+          - dev
           - feature/**
 
 env:

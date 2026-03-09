@@ -3,8 +3,8 @@ name: Build DEB Package
 'on':
     push:
         branches:
-          - develop
-          - master
+          - dev
+          - main
           - feature/**
     pull_request:
     workflow_dispatch:
