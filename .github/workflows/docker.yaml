@@ -27,7 +27,7 @@ jobs:
                     python3 -m pip install -r requirements.txt
 
           - name: Install additional packages
-            run: sudo apt-get install -y libldap2-dev postgresql-server-dev-16
+            run: sudo apt-get install -y libldap2-dev
 
           - name: Setup non-root user
             run: |

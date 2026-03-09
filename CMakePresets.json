@@ -38,6 +38,7 @@
       "cacheVariables": {
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
         "USERVER_FEATURE_POSTGRESQL": "ON",
+        "USERVER_FEATURE_PATCH_LIBPQ": "OFF",
         "CMAKE_CXX_FLAGS": "-Wno-deprecated-declarations -Wno-array-bounds"
       }
     }
