@@ -13,10 +13,17 @@ namespace ShortLinker {
 
 namespace {
 
+/// @brief Длина генерируемого идентификатора ссылки
 constexpr std::size_t kIdLength = 8;
+
+/// @brief Алфавит для генерации ID (латинские буквы в обоих регистрах + цифры)
 constexpr std::string_view kAlphabet =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+/// @brief Генерирует случайный ID из `kIdLength` символов алфавита `kAlphabet`
+///
+/// Использует `thread_local` генератор для безопасной работы в многопоточной среде.
+/// @return строка длиной `kIdLength` из случайных символов
 std::string GenerateId() {
   thread_local std::mt19937 gen{std::random_device{}()};
   std::uniform_int_distribution<std::size_t> dist(0, kAlphabet.size() - 1);
@@ -28,6 +35,7 @@ std::string GenerateId() {
   return id;
 }
 
+/// @brief Максимальное количество попыток генерации уникального ID
 constexpr std::size_t kMaxRetries = 5;
 
 }  // namespace

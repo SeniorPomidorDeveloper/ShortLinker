@@ -1,3 +1,8 @@
+/// @file main.cpp
+/// @brief Точка входа сервиса ShortLinker
+///
+/// Собирает список компонентов и запускает микросервис через userver.
+
 #include <userver/clients/dns/component.hpp>
 #include <userver/clients/http/component.hpp>
 #include <userver/clients/http/middlewares/pipeline_component.hpp>

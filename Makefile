@@ -62,6 +62,16 @@ format:
 	find src -name '*pp' -type f | xargs $(CLANG_FORMAT) -i
 	find tests -name '*.py' -type f | xargs autopep8 -i
 
+# Generate Doxygen documentation
+.PHONY: docs
+docs:
+	doxygen Doxyfile
+
+# Remove generated documentation
+.PHONY: docs-clean
+docs-clean:
+	rm -rf docs/
+
 # Start targets makefile in docker wrapper.
 # The docker mounts the whole service's source directory,
 # so you can do some stuff as you wish, switch back to host (non-docker) system
