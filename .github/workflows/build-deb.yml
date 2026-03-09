@@ -57,7 +57,7 @@ jobs:
             run: mv ../*.deb .
 
           - name: Upload .deb artifact
-            uses: actions/upload-artifact@v4
+            uses: actions/upload-artifact@v7
             with:
                 name: deb-package-ubuntu-24.04
                 path: '*.deb'
