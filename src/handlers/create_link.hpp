@@ -3,7 +3,7 @@
 #include <userver/server/handlers/http_handler_base.hpp>
 #include <userver/storages/postgres/cluster.hpp>
 
-namespace service2_13 {
+namespace ShortLinker {
 
 class CreateLink final : public userver::server::handlers::HttpHandlerBase {
  public:
@@ -20,4 +20,4 @@ class CreateLink final : public userver::server::handlers::HttpHandlerBase {
   userver::storages::postgres::ClusterPtr pg_cluster_;
 };
 
-}  // namespace service2_13
+}  // namespace ShortLinker

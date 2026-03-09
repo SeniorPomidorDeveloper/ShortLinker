@@ -5,7 +5,7 @@ compile_commands.json
 .ccache/
 .idea/
 .vscode/
-!.vscode/c_cpp_properties.json
+!.vscode/c_cpp_properties.sa
 !.vscode/cmake-variants.yaml
 !.vscode/README.md
 .cores/
@@ -15,3 +15,9 @@ Testing/
 Makefile.local
 CMakeUserPresets.json
 .clangd
+obj-debian/
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/*.substvars
+debian/ShortLinker/

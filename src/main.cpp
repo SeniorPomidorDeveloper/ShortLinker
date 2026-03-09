@@ -27,8 +27,8 @@ int main(int argc, char* argv[]) {
           .Append<userver::server::handlers::TestsControl>()
           .Append<userver::congestion_control::Component>()
           .Append<userver::components::Postgres>("postgres-db")
-          .Append<service2_13::CreateLink>()
-          .Append<service2_13::Redirect>();
+          .Append<ShortLinker::CreateLink>()
+          .Append<ShortLinker::Redirect>();
 
   return userver::utils::DaemonMain(argc, argv, component_list);
 }

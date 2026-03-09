@@ -9,7 +9,7 @@
 #include <userver/server/http/http_status.hpp>
 #include <userver/storages/postgres/component.hpp>
 
-namespace service2_13 {
+namespace ShortLinker {
 
 namespace {
 
@@ -88,4 +88,4 @@ std::string CreateLink::HandleRequestThrow(
   return R"({"error":"failed to generate unique id"})";
 }
 
-}  // namespace service2_13
+}  // namespace ShortLinker

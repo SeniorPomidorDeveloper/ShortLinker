@@ -1,0 +1,10 @@
+Package: shortlinker
+Version: 1.0.0-1
+Architecture: amd64
+Maintainer: CI Build <ci@example.com>
+Installed-Size: 40837
+Section: net
+Priority: optional
+Homepage: https://github.com/userver-framework/userver
+Description: ShortLinker microservice
+ A microservice built with the userver C++ async framework.

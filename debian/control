@@ -1,0 +1,18 @@
+Source: shortlinker
+Section: net
+Priority: optional
+Maintainer: CI Build <ci@example.com>
+Build-Depends: debhelper (>= 13),
+               cmake (>= 3.12),
+               ninja-build,
+               git,
+               ccache,
+               make
+Standards-Version: 4.6.2
+Homepage: https://github.com/userver-framework/userver
+
+Package: shortlinker
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ShortLinker microservice
+ A microservice built with the userver C++ async framework.

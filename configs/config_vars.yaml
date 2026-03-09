@@ -6,4 +6,4 @@ is-testing: false
 
 server-port: 8080
 
-dbconnection: 'postgresql://service2_13:password@localhost:5432/service2_13'
+dbconnection: 'postgresql://ShortLinker:password@localhost:5432/ShortLinker'

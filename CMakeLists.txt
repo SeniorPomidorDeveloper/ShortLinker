@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12...3.31)
-project(service2_13 CXX)
+project(ShortLinker CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(DownloadUserver)

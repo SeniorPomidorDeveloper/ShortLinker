@@ -4,7 +4,7 @@
 #include <userver/server/http/http_status.hpp>
 #include <userver/storages/postgres/component.hpp>
 
-namespace service2_13 {
+namespace ShortLinker {
 
 Redirect::Redirect(const userver::components::ComponentConfig& config,
                    const userver::components::ComponentContext& context)
@@ -40,4 +40,4 @@ std::string Redirect::HandleRequestThrow(
   return {};
 }
 
-}  // namespace service2_13
+}  // namespace ShortLinker

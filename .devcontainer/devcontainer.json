@@ -1,8 +1,8 @@
 {
     "image": "ghcr.io/userver-framework/ubuntu-22.04-userver-pg-dev",
     "remoteUser": "user",
-    "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/service2_13,type=bind",
-    "workspaceFolder": "/home/user/service2_13",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/ShortLinker,type=bind",
+    "workspaceFolder": "/home/user/ShortLinker",
     "runArgs": [
         "--cap-add=SYS_PTRACE",
         "--security-opt",
@@ -14,7 +14,7 @@
     "containerEnv": {
         "SHELL": "/bin/bash",
         "PREFIX": "${PREFIX:-~/.local}",
-        "CCACHE_DIR": "/home/user/service2_13/.ccache",
+        "CCACHE_DIR": "/home/user/ShortLinker/.ccache",
         "CORES_DIR": "/cores"
     },
     "customizations": {
@@ -42,6 +42,6 @@
             }
         }
     },
-    "onCreateCommand": "sudo git config --global --add safe.directory /home/user/service2_13",
+    "onCreateCommand": "sudo git config --global --add safe.directory /home/user/ShortLinker",
     "mounts": []
 }

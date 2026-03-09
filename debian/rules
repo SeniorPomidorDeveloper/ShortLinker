@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all optimize=-lto
+export DEB_BUILD_OPTIONS = nostrip
+export DH_VERBOSE = 1
+
+# Prevent any shell PREFIX variable from leaking into cmake
+# (CMakeLists.txt uses ENV{PREFIX} to override CMAKE_INSTALL_PREFIX)
+unexport PREFIX
+
+PROJECT_NAME := shortlinker
+CMAKE_TARGET := ShortLinker
+NPROCS := $(shell nproc)
+BUILD_DIR := $(CURDIR)/obj-debian
+
+%:
+	dh $@ --parallel
+
+override_dh_auto_configure:
+	cmake -B $(BUILD_DIR) \
+	    -DCMAKE_BUILD_TYPE=Release \
+	    -DCMAKE_INSTALL_PREFIX=/usr \
+	    -DUSERVER_FEATURE_POSTGRESQL=ON \
+	    -DCMAKE_CXX_FLAGS="-Wno-deprecated-declarations -Wno-array-bounds -Wno-stringop-overflow -Wno-dangling-reference" \
+	    -G Ninja
+
+override_dh_auto_build:
+	cmake --build $(BUILD_DIR) -j$(NPROCS) --target $(CMAKE_TARGET)
+
+override_dh_auto_install:
+	DESTDIR=$(CURDIR)/debian/$(PROJECT_NAME) \
+	    cmake --install $(BUILD_DIR) --component $(CMAKE_TARGET)
+
+override_dh_auto_test:
+	# Skip tests during package build
+
+override_dh_dwz:
+	# Skip dwz compression (not compatible with compressed debug sections)
+
+override_dh_makeshlibs:
+	# Package contains only an executable, no shared libraries
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf $(BUILD_DIR)

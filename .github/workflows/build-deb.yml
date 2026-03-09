@@ -1,0 +1,64 @@
+name: Build DEB Package
+
+'on':
+    push:
+        branches:
+          - develop
+          - master
+          - feature/**
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+    build-deb:
+        name: Build .deb (Ubuntu 24.04)
+        runs-on: ubuntu-24.04
+
+        steps:
+          - uses: actions/checkout@v4
+            with:
+                submodules: true
+
+          - name: Cache CPM packages and ccache
+            uses: actions/cache@v4
+            with:
+                path: |
+                    ~/.cache/CPM
+                    ~/.cache/ccache
+                key: 'deb-build-ubuntu-24.04 ${{hashFiles(''CMakeLists.txt'', ''cmake/**'')}} run-${{github.run_number}}'
+                restore-keys: |
+                    deb-build-ubuntu-24.04 ${{hashFiles('CMakeLists.txt', 'cmake/**')}} run-
+                    deb-build-ubuntu-24.04 ${{hashFiles('CMakeLists.txt', 'cmake/**')}}
+                    deb-build-ubuntu-24.04
+
+          - name: Install build dependencies
+            run: |
+                DEPS_FILE="https://raw.githubusercontent.com/userver-framework/userver/refs/heads/develop/scripts/docs/en/deps/ubuntu-24.04.md"
+                sudo apt-get update
+                sudo apt-get install --allow-downgrades -y \
+                    $(wget -q -O - "${DEPS_FILE}") \
+                    devscripts debhelper dpkg-dev
+
+          - name: Configure ccache
+            run: ccache -M 4.0GB
+
+          - name: Mark debian/rules as executable
+            run: chmod +x debian/rules
+
+          - name: Build .deb package
+            run: dpkg-buildpackage -b -us -uc -j$(nproc)
+            env:
+                CCACHE_DIR: ${{github.workspace}}/.ccache
+
+          - name: Show built packages
+            run: ls -lh ../*.deb ../*.buildinfo ../*.changes
+
+          - name: Move .deb to workspace
+            run: mv ../*.deb .
+
+          - name: Upload .deb artifact
+            uses: actions/upload-artifact@v4
+            with:
+                name: deb-package-ubuntu-24.04
+                path: '*.deb'
+                if-no-files-found: error
