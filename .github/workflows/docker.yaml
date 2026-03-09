@@ -27,7 +27,7 @@ jobs:
                     python3 -m pip install -r requirements.txt
 
           - name: Install additional packages
-            run: sudo apt-get install -y libldap2-dev
+            run: sudo apt-get install -y libldap2-dev libboost-iostreams-dev
 
           - name: Setup non-root user
             run: |

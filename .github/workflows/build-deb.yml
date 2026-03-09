@@ -37,7 +37,7 @@ jobs:
                 sudo apt-get update
                 sudo apt-get install --allow-downgrades -y \
                     $(wget -q -O - "${DEPS_FILE}") \
-                    devscripts debhelper dpkg-dev libldap2-dev
+                    devscripts debhelper dpkg-dev libldap2-dev libboost-iostreams-dev
 
           - name: Configure ccache
             run: ccache -M 4.0GB
