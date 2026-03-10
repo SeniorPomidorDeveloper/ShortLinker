@@ -13,6 +13,8 @@ jobs:
     build-deb:
         name: Build .deb (Ubuntu 24.04)
         runs-on: ubuntu-24.04
+        permissions:
+            contents: write
 
         steps:
           - uses: actions/checkout@v4
